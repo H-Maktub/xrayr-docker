@@ -5,6 +5,7 @@ WORKDIR /app
 
 RUN apk add --no-cache git
 ENV CGO_ENABLED=0
+RUN echo "Building version: ${APP_VERSION}"
 RUN git clone --branch ${APP_VERSION} --depth 1 https://github.com/XrayR-project/XrayR.git .
 RUN go mod download
 RUN go build -v -o XrayR -trimpath -ldflags "-s -w -buildid="
